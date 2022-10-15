@@ -78,7 +78,7 @@ export let beginUserAuthenticationProcess = (blogPostObj, errorUpdater, endpoint
 
             let response = resp.json();
             response.then(data => {
-                // console.log(data, "<<data>>");
+                console.log(data, "<<data>>");
                 setLocalStorageItems(data);
                 // handleWhichForm("logout")
                 handleAuth()
