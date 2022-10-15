@@ -14,7 +14,6 @@ let getSpecificBlogData = (req, res, next) => {
 let showAllBlogPosts = (req, res, next) => {
     PostSchema.find()
         .then(posts => {
-            // console.log("serve blogs")
             res.status(200).json({ success: true, posts: posts });
         }).catch(err => next(err))
 };
@@ -39,6 +38,7 @@ let createNewBlogPost = [
         let blogData = {
             title: req.body.title,
             body: req.body.body,
+            author: req.body.uid,
             authorName: req.body.authorName,
             posted: req.body.posted || Date.now(),
             published: req.body.published || true
@@ -51,10 +51,10 @@ let createNewBlogPost = [
 
         let newBlog = new PostSchema(blogData)
 
-        // console.log(errors.array(), "here here!!", req.body)
+        newBlog.save((err, _) => {
+            if(err) return next(err);
 
-        newBlog.save(post => {
-            console.log("new post is saved", post);
+            console.log("new post is saved");
             res.send("created a new post")
         })
     }
@@ -66,7 +66,6 @@ let updateThisBlogPost = (req, res, next) => {
             result.published = !result.published;
             PostSchema.findByIdAndUpdate(result._id, result, {}, (err, _) => {
                 if (err) return next(err)
-                // console.log("successfully updated", result)
                 console.log("successfully updated")
                 res.redirect("/")
             })

@@ -6,7 +6,6 @@ let removeComments = () => {
 
 let showBlogPostComments = () => {
     let blogDiv = document.querySelector(".bp-wrapper");
-    console.log(blogDiv.id)
     fetchCommentsForPost(blogDiv.id)
 }
 
@@ -22,11 +21,9 @@ let fetchCommentsForPost = (blogId) => {
 }
 
 let commenceRenderingPostComments = data => {
-    // console.log(data, "chk1", data.data.length)
     if(data.data.length) {
         let acDiv = document.querySelector(".all-comments");
         data.data.forEach(item => {
-            // console.log(commentMarkup(item))
             acDiv.append(commentMarkup(item))
         })
     }

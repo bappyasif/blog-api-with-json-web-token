@@ -27,10 +27,11 @@ function CommentDelete() {
     <div>
         <h1>Comment Delete</h1>
         <h2>Are you sure you want to delete this comment?</h2>
+
         {doneDelete ? <Navigate to={`/blogs/${commentData.blogPost}`} /> : null}
+        
         <form method='post' action='' onSubmit={handleSubmit}>
             <input hidden name='commentId' />
-            {/* <button><Link to={`/blogs/${commentData.blogPost}`}>Delete</Link></button> */}
             <button type='submit'>Delete</button>
             <Link className='nav-link' to={`/blogs/${commentData.blogPost}`}>Cancel</Link>
         </form>

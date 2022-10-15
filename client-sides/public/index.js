@@ -12,21 +12,18 @@ let fetchAllBlogPosts = () => {
             blogsData = data.posts.filter(item => item.published);
             renderDataByChunk(blogsData, CHUNK, CURRENT);
 
+            // increasing current value with adding chunk to it
             CURRENT = CURRENT + CHUNK;
-
-            console.log(blogsData, "<><>")
 
             // show comments when there is blog posts available
             if (blogsData.length) {
                 showCommentFormView()
-                // showBlogPostComments()
             }
         })
         .catch(err => new Error("error occured", err))
 }
 
 let handlePrevious = () => {
-
     if (CURRENT > 0) {
         let temp = CURRENT - CHUNK
         cleanExistingBlogPosts();
@@ -39,12 +36,9 @@ let handlePrevious = () => {
     if (CURRENT == 0) {
         CURRENT = CHUNK
     }
-
-    console.log(CURRENT, CHUNK, "prev")
 }
 
 let handleNext = () => {
-
     if (CURRENT <= blogsData.length - 1) {
         let temp = CURRENT + CHUNK
         cleanExistingBlogPosts();
@@ -57,8 +51,6 @@ let handleNext = () => {
     if (CURRENT == blogsData.length) {
         CURRENT = CURRENT - CHUNK
     }
-
-    console.log(CURRENT, CHUNK, "next")
 }
 
 let cleanExistingBlogPosts = () => {

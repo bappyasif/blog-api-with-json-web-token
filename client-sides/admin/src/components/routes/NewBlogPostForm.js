@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { sendDataToServer } from '../utils';
 import { Editor } from "@tinymce/tinymce-react"
 import { Navigate } from 'react-router';
@@ -35,8 +35,10 @@ function NewBlogPostForm({ }) {
     }
   }
 
-  // console.log(formData, "fromData", bodyText)
-  // console.log(errorResponse, "errorData", errorResponse.errors)
+  // making uid to be saved formData, so that when data is submited user id is accessible to server
+  useEffect(() => {
+    setFormData(prev => ({...prev, "uid": localStorage.getItem("uid").toString()}))
+  }, [])
 
   return (
     <div className='form-wrapper'>
@@ -44,6 +46,7 @@ function NewBlogPostForm({ }) {
       {errorResponse?.errors ? <RenderErrors errors={errorResponse.errors} /> : null}
       <form method='post' action='' onSubmit={handleSubmit}>
         <legend>Create A New Blog Post</legend>
+        <input type={"hidden"} name="uid" defaultValue={localStorage.getItem("uid").toString()} />
         <fieldset>
           <label htmlFor='title'>Ttile</label>
           <input id='title' type={'text'} name={'title'} onChange={(e) => handleChange(e, 'title')} placeholder={"type in blog post title here...."} required />

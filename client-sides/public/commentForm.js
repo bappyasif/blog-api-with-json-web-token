@@ -5,28 +5,23 @@ let blogDiv = document.querySelector(".bp-wrapper");
 let errosDiv = document.querySelector(".errors");
 
 let showCommentFormView = () => {
-    let commentsDiv = document.querySelector(".comments");
-    // commentsDiv.classList.remove("comments");
-    // commentsDiv.classList.add("show-comments");
+    // let commentsDiv = document.querySelector(".comments");
+    let commentForm = document.querySelector(".comment-form");
+    commentForm.style.display = 'block';
 }
 
 let handleUserCommentSubmit = () => {
-    // event.preventDefault()
     let email = emailEl.value;
     let name = nameEl.value;
     let body = bodyEl.value;
-    // let blogPost = blogDiv.id;
     let blogPost = document.querySelector(".bp-wrapper").id
 
-    // console.log(name.value, comment.value, "<><>", postDiv.id);
     let data = {
         email,
         name,
         body,
         blogPost
     }
-
-    console.log(data, "data")
 
     if(email && name && body) {
         postDataToServer(data)
@@ -39,13 +34,6 @@ let renderErrorMarkup = (errors) => {
     let errosDiv = document.querySelector(".errors");
     errosDiv.append(renderErrors(errors))
 }
-
-// let renderErrors = (errors) => {
-//     let domStr = `<ul>
-//         ${errors.forEach(err => <li>{err.msg}</li>)}
-//     </ul>`
-//     document.createRange().createContextualFragment(domStr).firstChild
-// }
 
 let renderErrors = (errors) => {
     let ulDiv = document.createElement("ul");
@@ -89,14 +77,13 @@ let postDataToServer = (data) => {
         body: JSON.stringify(data)
     }).then((resp) => {
         if (resp.status >= 200 && resp.status <= 299) {
-            console.log("data is sent to server side", resp)
+            // console.log("data is sent to server side", resp)
             removeValues();
             fetchCommentsForPost(data.blogPost)
         } else {
             let data = resp.json();
             data
                 .then(respData => {
-                    console.log(respData, "respData!!")
                     renderErrorMarkup(respData.errors)
                 })
                 .catch(err => console.error('error occured', err))

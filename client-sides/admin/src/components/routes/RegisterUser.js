@@ -9,7 +9,6 @@ function RegisterUser() {
     let [userData, setUserData] = useState({})
 
     let handleAuth = () => {
-        console.log('here hetre')
         setAuth(true);
     }
 
@@ -21,8 +20,6 @@ function RegisterUser() {
     }
 
     let handleFormControlChange = (event, prop) => setUserData(prev => ({...prev, [prop]: event.target.value}))
-
-    errors.length && console.log(errors)
 
   return (
     <div className='regu-container'>

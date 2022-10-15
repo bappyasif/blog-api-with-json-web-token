@@ -36,13 +36,13 @@ export let sendDataToServer = (dataObj, errorUpdater, endpoint) => {
         body: JSON.stringify(dataObj)
     }).then((resp) => {
         if (resp.status >= 200 && resp.status <= 299) {
-            console.log("data is sent to server side", resp)
+            // console.log("data is sent to server side", resp)
+            // just making all previously existing error to be removed with an empty array
             errorUpdater([]);
         } else {
             let data = resp.json();
             data
                 .then(respData => {
-                    console.log(respData);
                     errorUpdater(respData);
                 })
                 .catch(err => console.error('error occured', err))
@@ -52,7 +52,6 @@ export let sendDataToServer = (dataObj, errorUpdater, endpoint) => {
 }
 
 export let updateThisBlogPost = blogPostObj => {
-    // console.log(blogPostObj, "<<>>")
     fetch("http://localhost:3000/blog/update", {
         method: "put",
         headers: {
@@ -74,13 +73,11 @@ export let beginUserAuthenticationProcess = (blogPostObj, errorUpdater, endpoint
         body: JSON.stringify(blogPostObj)
     }).then((resp) => {
         if (resp.status >= 200 && resp.status <= 299) {
-            console.log("data is sent to server side", resp)
+            // console.log("data is sent to server side", resp)
 
             let response = resp.json();
             response.then(data => {
-                console.log(data, "<<data>>");
                 setLocalStorageItems(data);
-                // handleWhichForm("logout")
                 handleAuth()
             })
                 .catch(err => console.error(err))
@@ -90,11 +87,7 @@ export let beginUserAuthenticationProcess = (blogPostObj, errorUpdater, endpoint
             let data = resp.json();
             data
                 .then(respData => {
-                    // console.log(respData);
                     errorUpdater(respData);
-                    // if (respData.success === false) {
-                    //     handleWhichForm("register")
-                    // }
                 })
                 .catch(err => console.error('error occured', err))
         }
@@ -103,11 +96,9 @@ export let beginUserAuthenticationProcess = (blogPostObj, errorUpdater, endpoint
 }
 
 let setLocalStorageItems = (authObject) => {
-    // let expires = moment().add(authObject.expiresIn)
     let expires = moment().add(1, "days")
-
     localStorage.setItem("token", authObject.token);
-    // localStorage.setItem("expires", expires);
+    localStorage.setItem("uid", authObject.user._id);
     localStorage.setItem("expires", JSON.stringify(expires.valueOf())); // sets time in millis
 }
 
@@ -126,4 +117,5 @@ export const isLoggedOut = () => !isLoggedIn()
 export const logoutUser = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("expires");
+    localStorage.removeItem("uid");
 }

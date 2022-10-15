@@ -16,9 +16,13 @@
             <a href="http://localhost:3001/">Admin</a>
         </nav>
         <div class="blogs"></div>
+        <div class="btns-wrapper">
+            <div class="prev-btn"><i class="fa-solid fa-left-long"></i><span>Prev</span></div>
+            <div class="next-btn"><span>Next</span><i class="fa-solid fa-right-long"></i></div>
+        </div>
         <div class="comments">
             <div class="errors"></div>
-            <form action="" method="" onsubmit="return false">
+            <form class="comment-form" action="" method="" onsubmit="return false" style="display: none;">
                 <legend>Feel like posting a comment</legend>
                 <fieldset>
                     <label for="name">Your Name</label>
@@ -35,10 +39,6 @@
                 <button type="submit" onclick="handleUserCommentSubmit()">Post Comment</button>
             </form>
             <div class="all-comments"></div>
-        </div>
-        <div class="btns-wrapper">
-            <div class="prev-btn"><i class="fa-solid fa-left-long"></i><span>Prev</span></div>
-            <div class="next-btn"><span>Next</span><i class="fa-solid fa-right-long"></i></div>
         </div>
     </div>
     <script src="index.js"></script>

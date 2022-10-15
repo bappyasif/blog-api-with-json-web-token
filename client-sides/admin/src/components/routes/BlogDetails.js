@@ -9,7 +9,9 @@ import { fetchData } from '../utils'
 function BlogDetails() {
   let [blogData, setBlogData] = useState([]);
   let [comments, setComments] = useState([]);
+  
   const param = useParams();
+  
   const commentsEndpoint = `http://localhost:3000/comment/${param.blogId}/all-comments`;
   const blogPostEndpoint = `http://localhost:3000/blog/posts/${param.blogId}`;
 
@@ -21,8 +23,6 @@ function BlogDetails() {
     fetchData(commentsEndpoint, handleComments)
     fetchData(blogPostEndpoint, handleBlogPost)
   }, [])
-
-  // console.log(comments, "comments!!", blogData)
 
   let renderComments = () => comments?.map(comment => <RenderComment key={comment._id} commentData={comment} />)
 
@@ -40,7 +40,6 @@ function BlogDetails() {
             <span className='format'><FontAwesomeIcon icon={faCalendarCheck} className="fres" /><span>{moment(blogData.posted).format("YYYY/MM/DD")}</span></span>
             <span className='relative'><FontAwesomeIcon icon={faStopwatch} className="fres" /><span>{moment(blogData.posted).from(moment())}</span></span>
           </span>
-          {/* <button onClick={handleClick}>{togglePublish ? "Unpublish" : "Publish"}</button> */}
         </p>
       </div>
       <h1>All Comments</h1>

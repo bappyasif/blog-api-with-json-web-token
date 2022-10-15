@@ -20,7 +20,6 @@ let deleteComment = (req, res, next) => {
 let updateCommentGetRequest = (req, res, next) => {
     CommentSchema.find({_id: req.params.commentId})
         .then(result => {
-            // console.log(result)
             res.status(200).json({success: true, data: result[0]})
         })
         .catch(err => next(err))
@@ -61,7 +60,6 @@ let updateCommentPostRequest = [
 ]
 
 let getCommentsForSpecificBlogPost = (req, res) => {
-    console.log("begionjs", req.params.blogId)
     CommentSchema.find({blogPost: req.params.blogId})
     .then(result => res.status(200).json({success: true, data: result}))
     .catch(err => {
