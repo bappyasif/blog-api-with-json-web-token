@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js" integrity="sha512-CryKbMe7sjSCDPl18jtJI5DR5jtkUWxPXWaLCst6QjH8wxDexfRJic2WRmRXmstr2Y8SxDDWuBO6CQC6IE4KTA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment-with-locales.min.js" integrity="sha512-42PE0rd+wZ2hNXftlM78BSehIGzezNeQuzihiBCvUEB3CVxHvsShF86wBWwQORNxNINlBPuq7rG4WWhNiTVHFg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="styles.css">
+    <title>Home Page: All Posts</title>
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <a href="http://localhost:3001/">Admin</a>
+        </nav>
+        <div class="blogs"></div>
+        <div class="comments">
+            <div class="errors"></div>
+            <form action="" method="" onsubmit="return false">
+                <legend>Feel like posting a comment</legend>
+                <fieldset>
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" name="name" required placeholder="your name goes here">
+                </fieldset>
+                <fieldset>
+                    <label for="email">Your Email (* will not be shared publicly )</label>
+                    <input type="email" id="email" name="email" required placeholder="your email goes here">
+                </fieldset>
+                <fieldset>
+                    <label for="body">Your Comment</label>
+                    <textarea name="body" id="body" rows="4" required placeholder="your comment goes here"></textarea>
+                </fieldset>
+                <button type="submit" onclick="handleUserCommentSubmit()">Post Comment</button>
+            </form>
+            <div class="all-comments"></div>
+        </div>
+        <div class="btns-wrapper">
+            <div class="prev-btn"><i class="fa-solid fa-left-long"></i><span>Prev</span></div>
+            <div class="next-btn"><span>Next</span><i class="fa-solid fa-right-long"></i></div>
+        </div>
+    </div>
+    <script src="index.js"></script>
+    <script src="commentForm.js"></script>
+    <script src="showComments.js"></script>
+</body>
+</html>
