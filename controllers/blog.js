@@ -24,7 +24,8 @@ let createNewBlogPost = [
     body("title", "must be over 2 characters long")
         .trim().isLength({ min: 2 }).escape(),
     body("body", "must be over 4 characters long")
-        .trim().isLength({ min: 4 }).escape(),
+    .trim().isLength({ min: 4 }),
+        // .trim().isLength({ min: 4 }).escape(),
     body("authorName", "must be over 2 characters long")
         .trim().isLength({ min: 2 }).escape(),
     body("published", "can not be null")

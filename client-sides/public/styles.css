@@ -150,6 +150,22 @@ fieldset textarea {
     outline: dotted var(--special-clr) .8px;
     background-color: transparent;
     border-radius: 4px;
+    font-size: x-large;
+}
+
+label,
+input,
+legend,
+textarea {
+  color: var(--bg-clr);
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: var(--special-clr);
+    font-weight: lighter;
+    font-style: oblique;
+    font-size: large;
 }
 
 .all-comments .comment-wrapper {
@@ -159,11 +175,28 @@ fieldset textarea {
     margin: 4px 8px 0 0;
     border-radius: 8px;
     width: 737px;
+    background-color: var(--special-clr);
+}
+
+.comment-wrapper:first-child {
+    margin-top: 11px;
+}
+
+.comment-form {
+    padding: 0 0 11px 0;
 }
 
 .all-comments .comment-wrapper .posted {
     display: flex;
     justify-content: space-between;
+}
+
+.all-comments::before {
+    content: "All Comments";
+    font-size: xx-large;
+    color: var(--bg-clr);
+    border-bottom: dashed 2.9px var(--bg-clr);
+    display: flex;
 }
 
 .errors li {

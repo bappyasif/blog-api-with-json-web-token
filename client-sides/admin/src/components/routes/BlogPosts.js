@@ -52,10 +52,17 @@ let RenderThisBlogPost = ({blogPost}) => {
     return (
         <li className='blog-post'>
             <Link to={`/blogs/${_id}`}><h2 className='post-title'>{title}</h2></Link>
-            <p className='post-body'>{body}</p>
+            {/* <p className='post-body'>{body}</p> */}
+            <p className='post-body' dangerouslySetInnerHTML={{__html: body}}></p>
             <p className='info-wrapper'>
-                <span className='author-name'><FontAwesomeIcon icon={faClipboardUser} className="fres" /><span>{authorName}</span></span>
-                <span className='posted'><FontAwesomeIcon icon={faCalendarCheck} className="fres" /><span>{moment(posted).format("YYYY/MM/DD -- hA")}</span></span>
+                <span className='author-name'>
+                    <FontAwesomeIcon icon={faClipboardUser} className="fres" />
+                    <span>{authorName}</span>
+                </span>
+                <span className='posted'>
+                    <FontAwesomeIcon icon={faCalendarCheck} className="fres" />
+                    <span>{moment(posted).format("YYYY/MM/DD -- h:mm a")}</span>
+                </span>
                 <button onClick={handleClick}>{togglePublish ? "Unpublish" : "Publish"}</button>
             </p>
         </li>

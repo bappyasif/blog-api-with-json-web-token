@@ -2,16 +2,16 @@ import moment from 'moment';
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router'
 import { Link } from 'react-router-dom';
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
-import {faCalendarCheck, faClipboardUser, faStopwatch} from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faCalendarCheck, faClipboardUser, faStopwatch } from "@fortawesome/free-solid-svg-icons"
 import { fetchData } from '../utils'
 
 function BlogDetails() {
   let [blogData, setBlogData] = useState([]);
   let [comments, setComments] = useState([]);
-  
+
   const param = useParams();
-  
+
   const commentsEndpoint = `http://localhost:3000/comment/${param.blogId}/all-comments`;
   const blogPostEndpoint = `http://localhost:3000/blog/posts/${param.blogId}`;
 
@@ -54,10 +54,22 @@ let RenderComment = ({ commentData }) => {
 
   return (
     <li className="comment-wrapper">
-      <div className='item-div'><span>Email: </span> <span>{commentData.email}</span></div>
-      <div className='item-div'>Name: {commentData.name}</div>
-      <div className='item-div'>Body: {commentData.body}</div>
-      <div className='item-div'>Posted: {moment(commentData.posted).format("YYYY / MM / DD")}</div>
+      <div className='item-div'>
+        <span>Email: </span>
+        <span>{commentData.email}</span>
+      </div>
+      <div className='item-div'>
+        <span>Name:</span>
+        <span>{commentData.name}</span>
+      </div>
+      <div className='item-div'>
+        <span>Body: </span>
+        <span>{commentData.body}</span>
+      </div>
+      <div className='item-div'>
+        <span>Posted: </span>
+        <span>{moment(commentData.posted).format("YYYY / MM / DD")}</span>
+      </div>
       <div className='btns'>
         <Link className='nav-link' to={`/comments/${commentData._id}`}>Edit</Link>
         <Link className='nav-link' to={`/comments/${commentData._id}/delete`}>Delete</Link>

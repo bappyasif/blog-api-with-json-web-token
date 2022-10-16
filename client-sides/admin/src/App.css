@@ -20,7 +20,7 @@ ul {
 }
 
 body {
-  background-color: var(--bg-clr);
+  background-color: var(--link-clr);
 }
 
 a {
@@ -59,6 +59,7 @@ button[type="submit"] {
   background-color: var(--link-clr);
   cursor: pointer;
   color: var(--bg-clr);
+  font-weight: bold;
 }
 
 button[type="submit"]:hover,
@@ -76,6 +77,10 @@ a.nav-link:hover {
   margin: auto;
 }
 
+.form-wrapper {
+  width: 760px;
+}
+
 input,
 textarea {
   width: -webkit-fill-available;
@@ -90,6 +95,7 @@ legend,
 .regu-container p,
 textarea {
   font-size: x-large;
+  color: var(--bg-clr);
 }
 
 fieldset {
@@ -170,12 +176,21 @@ ul {
   padding: 53px;
   border-radius: 8px;
 }
+
+.ul-container h2,
 .bp-container h1,
 .bd-wrapper h1,
 legend,
 .regu-container h2 {
   margin: 11px 0;
   color: var(--btn-clr);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--special-clr);
+  font-weight: lighter;
+  font-style: oblique;
 }
 
 h2.post-title {
@@ -287,4 +302,61 @@ a.nav-link:first-child {
 .info-wrapper .fres {
   font-size: x-large;
   margin: 0 11px 0 0;
+}
+
+.chkbox-wrapper {
+  position: relative;
+  flex-direction: row;
+  gap: 11px;
+}
+
+.checkmark {
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  width: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+}
+
+.checkmark+label,
+label+.checkmark {
+  position: relative;
+  font-size: 20px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  height: 31px;
+  color: rgb(130, 228, 25);
+}
+
+.checkmark+label::before,
+label+.checkmark::before {
+  content: " ";
+  width: 33px;
+  height: 30px;
+  background-color: var(--btn-clr);
+}
+
+.checkmark:checked+label::after,
+label+.checkmark:checked::after {
+  content: " ";
+  background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSIiIGQ9Ik0wIDE5MC45VjE4NS4xQzAgMTE1LjIgNTAuNTIgNTUuNTggMTE5LjQgNDQuMUMxNjQuMSAzNi41MSAyMTEuNCA1MS4zNyAyNDQgODQuMDJMMjU2IDk2TDI2Ny4xIDg0LjAyQzMwMC42IDUxLjM3IDM0NyAzNi41MSAzOTIuNiA0NC4xQzQ2MS41IDU1LjU4IDUxMiAxMTUuMiA1MTIgMTg1LjFWMTkwLjlDNTEyIDIzMi40IDQ5NC44IDI3Mi4xIDQ2NC40IDMwMC40TDI4My43IDQ2OS4xQzI3Ni4yIDQ3Ni4xIDI2Ni4zIDQ4MCAyNTYgNDgwQzI0NS43IDQ4MCAyMzUuOCA0NzYuMSAyMjguMyA0NjkuMUw0Ny41OSAzMDAuNEMxNy4yMyAyNzIuMSAuMDAwMyAyMzIuNCAuMDAwMyAxOTAuOUwwIDE5MC45eiIvPjwvc3ZnPg==");
+  background-repeat: no-repeat;
+  background-size: 24px 24px;
+  background-position: center center;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 1px;
+  left: 0px;
+  top: 0px;
+  text-align: center;
+  background-color: transparent;
+  font-size: 10px;
+  height: 31px;
+  width: 31px;
 }

@@ -21,6 +21,8 @@ function NewBlogPostForm({ }) {
 
   let handleSubmit = (event) => {
     event.preventDefault();
+    console.log(formData, "formData")
+    // modify data to remove any "html" entities
     sendDataToServer(formData, handleErrorResponse);
   }
 
@@ -55,7 +57,7 @@ function NewBlogPostForm({ }) {
           <label htmlFor='body'>Body</label>
           {/* <textarea id='body' type={'text'} name={'body'} onChange={(e) => handleChange(e, 'body')} placeholder={"type in blog post title here...."} required></textarea> */}
           <Editor
-            initialValue="<p>This is the initial content of the editor</p>"
+            initialValue="This is the initial content of the editor"
             init={{
               selector: 'textarea',  // change this value according to your HTML
               height: 300,
@@ -77,8 +79,10 @@ function NewBlogPostForm({ }) {
           <label htmlFor='posted'>Posted</label>
           <input id='posted' type={'date'} name={'posted'} onChange={(e) => handleChange(e, 'posted')} required />
         </fieldset>
-        <fieldset>
-          <label htmlFor='publish'>Do you want this blog post to publish now? <input id='publish' name='publish' type={"checkbox"} onChange={(e) => handleChange(e, 'published')} /></label>
+        <fieldset className='chkbox-wrapper'>
+        <label htmlFor='publish'>Do you want this blog post to publish now?</label>
+          <input className='checkmark' id='publish' name='publish' type={"checkbox"} onChange={(e) => handleChange(e, 'published')} style={{width: "13px"}} />
+          {/* <label htmlFor='publish'>Do you want this blog post to publish now?</label> */}
         </fieldset>
         <button type='submit'>Create Now</button>
       </form>
