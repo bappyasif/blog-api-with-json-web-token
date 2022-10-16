@@ -1,7 +1,7 @@
 import moment from 'moment';
 import React, { useEffect, useState } from 'react'
 import { RenderErrors } from '../RenderErrors';
-import { fetchData, sendCommentDataToServer, sendDataToServer } from '../utils'
+import { fetchData, sendCommentDataToServer } from '../utils'
 
 function PublicSite() {
     let [blogs, setBlogs] = useState([])
@@ -80,7 +80,9 @@ let ButtonsWrapper = ({ blogs, current, setCurrentBlogIdx, chunk }) => {
 let CommentsWrapper = ({ blogs, current }) => {
     let [reFetch, setRefetch] = useState(false);
     let [errors, setErrors] = useState([])
+    
     let handleErrors = data => setErrors(data);
+    
     return (
         <div class="comments">
             {errors.length ? <RenderErrors errors={errors} /> : null}
@@ -101,8 +103,9 @@ let AllComments = ({ blogs, currentBlogIdx, reFetch, setRefetch }) => {
         fetchData(`http://localhost:3000/comment/${blogs[currentBlogIdx]._id}/all-comments`, handleComments)
         reFetch && setRefetch(false)
     }, [currentBlogIdx, reFetch])    
+
     let renderComments = () => commentsData?.map(comment => <RenderComment key={comment._id} commentData={comment} />)
-    console.log(reFetch, "refetrch!!")
+
     return (
         <div class="all-comments">
             {renderComments()}
@@ -134,34 +137,8 @@ let CommentForm = ({errorUpdater, id, setRefetch}) => {
         formData.blogPost = id;
         event.preventDefault()
         sendCommentDataToServer(event, formData, errorUpdater, setRefetch)
-        // sendDataToServer(formData, errorUpdater, "http://localhost:3000/comment/create")
-    //     fetch(("http://localhost:3000/comment/create"), {
-    //     method: "post",
-    //     headers: {
-    //         "Accept": "application/json",
-    //         "Content-Type": "application/json"
-    //     },
-    //     body: JSON.stringify(formData)
-    // }).then((resp) => {
-    //     if (resp.status >= 200 && resp.status <= 299) {
-    //         // just making all previously existing error to be removed with an empty array
-    //         errorUpdater([]);
-    //         // so that comemnt data gets refetched after a successfull post
-    //         setRefetch(true);
-    //         // also resetting form data after a successful post
-    //         event.target.reset()
-    //     } else {
-    //         let data = resp.json();
-    //         data
-    //             .then(respData => {
-    //                 errorUpdater(respData.errors);
-    //                 // console.log(respData, "!!")
-    //             })
-    //             .catch(err => console.error('error occured', err))
-    //     }
-    // })
-    //     .catch(err => console.error('error occured', err))
     }
+
     return (
         <form class="comment-form" action="" method="post" onSubmit={handleSubmit}>
             <legend>Feel like posting a comment</legend>
