@@ -30,7 +30,8 @@ function BlogDetails() {
     <div className='bd-wrapper'>
       <div className='blog-post'>
         <h2 className='post-title'>{blogData.title}</h2>
-        <p className='post-body'>{blogData.body}</p>
+        {/* <p className='post-body'>{blogData.body}</p> */}
+        <p className='post-body' dangerouslySetInnerHTML={{__html: blogData.body}}></p>
         <p className='info-wrapper'>
           <span className='author-name'>
             <span><FontAwesomeIcon icon={faClipboardUser} className="fres" /></span>
