@@ -7,7 +7,7 @@ function ShowNavs({ auth, setAuth }) {
     <nav>
       <ul>
         <li>
-          <a className='nav-item' href={"http://127.0.0.1:5500/client-sides/public/index.html"} target={"_blank"}>Blog Site</a>
+          <Link className='nav-item' to={"/"}>Blog Page</Link>
         </li>
         <li>
           {auth ? null : <Link className='nav-item' to={"/login"}>Login</Link>}
@@ -16,7 +16,7 @@ function ShowNavs({ auth, setAuth }) {
           {auth ? null : <Link className='nav-item' to={"/register"}>Register</Link>}
         </li>
         <li>
-          {auth ? <Link className='nav-item' to={"/blogs"}>Dashboard</Link> : null}
+          {auth ? <Link className='nav-item' to={"/admin"}>Admin Dashboard</Link> : null}
         </li>
         <li>
           {auth ? <Link className='nav-item' to={"/create/blog"}>CreateNewBlog</Link> : null}

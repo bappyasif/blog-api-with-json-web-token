@@ -94,7 +94,8 @@ let postCommentToBlog = [
         newComment.save((err) => {
             if(err) return next(err)
             console.log("comment posted")
-            res.send("/blog")
+            // res.send("/blog")
+            res.status(200).json({success: true, msg: "comment is posted successfully"})
         })
     }
 ];

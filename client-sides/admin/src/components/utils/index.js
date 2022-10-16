@@ -95,6 +95,34 @@ export let beginUserAuthenticationProcess = (blogPostObj, errorUpdater, endpoint
         .catch(err => console.error('error occured', err))
 }
 
+export let sendCommentDataToServer = (event, formData, errorUpdater, setRefetch) => {
+    fetch(("http://localhost:3000/comment/create"), {
+        method: "post",
+        headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(formData)
+    }).then((resp) => {
+        if (resp.status >= 200 && resp.status <= 299) {
+            // just making all previously existing error to be removed with an empty array
+            errorUpdater([]);
+            // so that comemnt data gets refetched after a successfull post
+            setRefetch(true);
+            // also resetting form data after a successful post
+            event.target.reset()
+        } else {
+            let data = resp.json();
+            data
+                .then(respData => {
+                    errorUpdater(respData.errors);
+                })
+                .catch(err => console.error('error occured', err))
+        }
+    })
+        .catch(err => console.error('error occured', err))
+}
+
 let setLocalStorageItems = (authObject) => {
     let expires = moment().add(1, "days")
     localStorage.setItem("token", authObject.token);
